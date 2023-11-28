@@ -3,7 +3,7 @@ body{
   display: flex;
   height: 100vh;
 }
-/* HEADER - MENU, BARRA DE PESQUISA ------------------------------------------------------------------------------*/
+/* modelo.hmtl HEADER - MENU, BARRA DE PESQUISA ------------------------------------------------------------------------------*/
 #menu:hover{
     font-size: 1.1em;
     transition: .4s ;
@@ -14,7 +14,7 @@ body{
     left: 80%;
     margin: 1px;
 }
-/* HOME - MAIS DETALHES  ------------------------------------------------------------------------------------------*/
+/* home.html HOME - MAIS DETALHES  ------------------------------------------------------------------------------------------*/
 #homeh1{
     margin-top: 5%;
     margin-bottom: 10%; 
@@ -23,6 +23,7 @@ body{
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
+    border: none;
     color: #00F5FF    ;
     text-decoration: none;
     border-radius: 5px;
@@ -36,8 +37,14 @@ body{
     transform: scale(1.1);
     font-size: 1.2em;
 }
-/* SOBRE VAGAS  ---------------------------------------------------------------------------------------------------*/
+#cardsCad{
+    margin-bottom: 15%;
+}
+/* sobre.html SOBRE VAGAS  ---------------------------------------------------------------------------------------------------*/
 #enviarSobre{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 3%;
     font-size: 16px;
     color: #2a494d;
@@ -47,6 +54,7 @@ body{
     border-radius: 5px;
     background-color: transparent;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
+
 }
 #enviarSobre:hover{
     background-color: #2a494d;
@@ -54,23 +62,17 @@ body{
     color: rgb(255, 255, 255);
     transform: scale(1.1);
 }
-#cardSobre{
-    position: absolute;
-    top: 300px;
-    left: 60%;
-}
-/* LOGIN ADM - CAIXINHA, BOTÃO ------------------------------------------------------------------------------------*/
+/* login.html LOGIN ADM - CAIXINHA, BOTÃO ------------------------------------------------------------------------------------*/
 #login{
     padding-top: 1%;
-    margin-top: 10%;
-    height: 65%;
+    margin-top: 2%;
     margin-bottom: 10%;
     width: 65%;
     border-radius: 1%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 #login h1{
-    background-color: brown;
+
     padding-top: 3%;
 }
 #textH1{
@@ -97,22 +99,29 @@ body{
    padding-bottom: 10%;
    color: #615858aa;
 }
-/* ÁREA ADM */
+/* adm.html ÁREA ADM */
 #vagasSem{
     margin-top: 10%;
     margin-bottom: 10%;
     width: 65%;
     height: 70px;
 }
-/* CADASTRO DE NOVAS VAGAS ----------------------------------------------------------------------------------------*/
-#cadastro{
-    margin-top: 3%;
-    margin-bottom: 3%;
- 
+#borda{
+    /* vagas adm (editar excluir visualização de vagas */
     border-radius: 1%;
+    justify-content:flex-start;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 #vagasCad{
-    margin-top: 2%;
+    /* cadastro de novas vagas */
+    margin-top: 3%;
+
+}
+/* CADASTRO DE NOVAS VAGAS ----------------------------------------------------------------------------------------*/
+/* #cadastro{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 1%;
 }
 #novoCad{
     padding-top: 1%;
@@ -124,14 +133,9 @@ body{
 }
 #novoCad h1{
     padding-top: 3%;
-    background-color: #2a4d2f;
-}
-#cardsCad{
-    margin-bottom: 15%;
-}
-/* EDITAR ---------------------------------------------------------------------------------------------------------- */
+} 
+/* editvaga.html EDITAR ---------------------------------------------------------------------------------------------------------- */
 #edit{
-    background-color: #2a4d2f;
     padding-top: 1%;
     margin-top: 10%;
     
@@ -141,10 +145,9 @@ body{
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 #edit h1{
-    background-color: #00F5FF;
     padding-top: 3%;
 }
-/* FOOTER - LOGOS REDES SOCIAIS  ------------------------------------------------------------------------------------*/
+/* modelo.html FOOTER - LOGOS REDES SOCIAIS  ------------------------------------------------------------------------------------*/
 .efeitohover{
     color:#ffffff;
     cursor: pointer; /* maozinha quando passa o mouse por cima */ 

@@ -181,10 +181,17 @@ def sobre():
     title = vaga['cargo_vaga']  # Ou algum outro campo relevante para o título
     return render_template("sobre.html", vaga=vaga, title=title)
 
+# Rota da página para quando não há páginas
 @app.route("/construcao")
 def construcao():
     title="Construção"
     return render_template("construcao.html", title=title)
+
+# Rota da página sobre a empresa
+@app.route("/empresa")
+def empresa():
+    title="Sobre a empresa"
+    return render_template("empresa.html", title=title)
 
 
 # Rota de busca

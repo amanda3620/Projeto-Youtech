@@ -75,8 +75,9 @@
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{vaga["tipo_vaga"]}}, {{vaga['local_vaga']}}
                         </h6>
-                        <a  id='maisDetalhes' type="" href="{{ url_for('sobre', vaga_id=vaga['id_vaga']) }}"
-                            class="btn btn-sm btn-outline mt-2"><p>mais detalhes</p>
+                        <br>
+                        <a id='maisDetalhes' href="{{ url_for('sobre', vaga_id=vaga['id_vaga']) }}"
+                            class="card-link">mais detalhes
                         </a>
                     </div>
                 </div>
