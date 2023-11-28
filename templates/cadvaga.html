@@ -23,7 +23,6 @@
                 <div class="invalid-feedback">Informe quais são os requisitos: </div>
             </div>
 
-            
             <div class="form-floating mb-2">
                 <textarea name="desc_vaga" name="desc_vaga" id="desc_vaga" class="form-control" required placeholder="" style="height: 100px;"></textarea>
                 <label for="desc_prod">Descrição:</label>
@@ -31,19 +30,44 @@
                     Dê uma breve descrição sobre a vaga: 
                 </div>
             </div>
+            
 
+
+            
             <div class="row">
                 <div class="col-12 col-md-5">
                     <div class="input-group mb-2">
                         <span class="input-group-text">R$</span>
                         <div class="form-floating">
-                            <input type="text" name="salario_vaga" id="salario_vaga" class="form-control" required placeholder="" />
-                            <label for="salario_vaga">Sálario: </label>
-                            <div class="invalid-feedback">Você deve informar o sálario: </div>
+                            <input type="text" name="salario_vaga" id="salario_vaga" class="form-control" required placeholder="" oninput="validarNumero(this)" />
+                            <label for="salario_vaga">Salário: </label>
+                            <div class="invalid-feedback">Você deve informar o salário: </div>
+                            <small id="aviso" class="text-muted">Apenas números são permitidos.</small>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <!-- funcãozinha para validação de apenas caracteres numericos -->
+            <script>
+                function validarNumero(input) {
+                    var valorAtual = input.value;
+            
+                    // Remove caracteres não numéricos e não pontos
+                    var valorNumerico = valorAtual.replace(/[^0-9.]/g, '');
+                    // Garante que não há mais de um ponto decimal
+                    valorNumerico = valorNumerico.replace(/(\..*)\./g, '$1');
+                    // Se o valor atual for diferente do valor numérico, exibe o aviso
+                    if (valorAtual !== valorNumerico) {
+                        document.getElementById('aviso').style.display = 'inline';
+                    } else {
+                        document.getElementById('aviso').style.display = 'none';
+                    }
+                    // Atualiza o valor no campo de entrada
+                    input.value = valorNumerico;
+                }
+            </script>
+            
+            
 
             <div class="form-floating mb-2">
                 <input type="text" name="local_vaga" id="local_vaga" class="form-control" required placeholder=""  />
@@ -51,18 +75,36 @@
                 <div class="invalid-feedback">Informe qual é o local de trabalho: </div>
             </div>
 
+
+
+
             <div class="form-floating mb-2">
-                <input type="text" name="email_vaga" id="email_vaga" class="form-control" required placeholder=""  />
+                <input type="email" name="email_vaga" id="email_vaga" class="form-control" required placeholder="" />
                 <label for="email_vaga">E-mail: </label>
-                <div class="invalid-feedback">Informe o seu E-mail: </div>
+                <div class="invalid-feedback">Informe um E-mail válido.</div>
+                <small id="aviso-email" class="text-muted">Certifique-se de fornecer um e-mail válido.</small>
             </div>
+            <!-- funcãozinha para validação de apenas email (@) -->
+            <script>
+                document.getElementById("email_vaga").addEventListener("input", function () {
+                    var input = this;
+                    var valorAtual = input.value;
+                    // Exibe o aviso se o formato do e-mail não for válido
+                    if (!input.checkValidity()) {
+                        document.getElementById("aviso-email").style.display = "inline"
+                    } else {
+                        document.getElementById("aviso-email").style.display = "none"
+                    }
+                });
+            </script>
+            
 
             <div class="col-12 col-md-7">
                 <div class="input-group m2-3">
                     <span class="input-group-text"><i class="bi bi-file-image"></i></span>
                     <div class="form-floating">
                         <input type="file" name="img_vaga" id="img_vaga" accept="image/jpeg,image/png" required class="form-control" />
-                        <div class="invalid-feedback">Você deve enviar uma foto para cadastro:</div>
+                        <div class="invalid-feedback">Você deve enviar uma foto para realizar o cadastro:</div>
                 </div>
             </div>    
             </div>
@@ -74,8 +116,8 @@
         </form>
     </div>
 </div>
-<!-- <script> -->
-    <!-- // Example starter JavaScript for disabling form submissions if there are invalid fields
+<!-- <script>
+     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
     'use strict'
 
@@ -94,5 +136,23 @@
         }, false)
     })
     })()
+
+      function validarNumero(input) {
+                    var valorAtual = input.value;
+            
+                    // Remove caracteres não numéricos e não pontos
+                    var valorNumerico = valorAtual.replace(/[^0-9.]/g, '');
+                    // Garante que não há mais de um ponto decimal
+                    valorNumerico = valorNumerico.replace(/(\..*)\./g, '$1');
+                    // Se o valor atual for diferente do valor numérico, exibe o aviso
+                    if (valorAtual !== valorNumerico) {
+                        document.getElementById('aviso').style.display = 'inline';
+                    } else {
+                        document.getElementById('aviso').style.display = 'none';
+                    }
+                    // Atualiza o valor no campo de entrada
+                    input.value = valorNumerico;
+                }
+    
 </script> -->
-<!-- {% endblock %} -->
+{% endblock %}
