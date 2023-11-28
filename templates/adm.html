@@ -11,13 +11,13 @@
         {% for vaga in vagas %}
         <div id='borda' class="py-1 m-5 d-flex align-items-center col-12 col-md-6">
             <div class="col-7">
-                <h4 class="text-danger">{{vaga['cargo_vaga']}}</h4>
+                <h4 class="text" style="color: #00FCA8;">{{vaga['cargo_vaga']}}</h4>
                 <br>
                 <h5 class="text-black">{{vaga['tipo_vaga']}}</h5>
                 <h5 class="text-black">{{vaga['requisitos_vaga']}}</h5>
-                <p class="text-danger fs-3">R$ {{vaga['salario_vaga']}}</p>
+                <p class="text fs-3" style="color: #00FCA8;">R$ {{vaga['salario_vaga']}}</p>
                 <h5 class="text-black">{{vaga['local_vaga']}}</h5>
-                <p class="text-success">{{vaga['email_vaga']}}</p>
+                <p class="text" style="color: #00FCA8;">{{vaga['email_vaga']}}</p>
             </div>
             <div class="col-5">
                 <a href="/editvaga/{{vaga['id_vaga']}}"><i class="bi bi-pencil-square fs-3 ms-5 text-end"
