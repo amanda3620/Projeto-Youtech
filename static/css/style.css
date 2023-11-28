@@ -11,7 +11,7 @@ body{
 #search{
     display: flex;
     position: absolute;
-    left: 85%;
+    left: 80%;
     margin: 1px;
 }
 /* HOME - MAIS DETALHES  ------------------------------------------------------------------------------------------*/
@@ -63,10 +63,15 @@ body{
 #login{
     padding-top: 1%;
     margin-top: 10%;
+    height: 65%;
     margin-bottom: 10%;
     width: 65%;
     border-radius: 1%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+#login h1{
+    background-color: brown;
+    padding-top: 3%;
 }
 #textH1{
     padding-top: 3%;
@@ -103,28 +108,41 @@ body{
 #cadastro{
     margin-top: 3%;
     margin-bottom: 3%;
-    width: 65%;
+ 
     border-radius: 1%;
 }
 #vagasCad{
     margin-top: 2%;
 }
 #novoCad{
-    height: 70%;
     padding-top: 1%;
     margin-top: 10% ;
-    margin-bottom: 20%;
     width: 65%;
     border-radius: 1%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: rgb(196, 255, 231);
 }
 #novoCad h1{
-    background-color: #2a494d;
     padding-top: 3%;
+    background-color: #2a4d2f;
 }
 #cardsCad{
     margin-bottom: 15%;
+}
+/* EDITAR ---------------------------------------------------------------------------------------------------------- */
+#edit{
+    background-color: #2a4d2f;
+    padding-top: 1%;
+    margin-top: 10%;
+    
+    margin-bottom: 10%;
+
+    border-radius: 1%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+#edit h1{
+    background-color: #00F5FF;
+    padding-top: 3%;
 }
 /* FOOTER - LOGOS REDES SOCIAIS  ------------------------------------------------------------------------------------*/
 .efeitohover{
@@ -135,45 +153,4 @@ body{
 .efeitohover:hover{
     color: #ffffff;
     font-size: 1.2em;
-}
-#upload{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    background-color: #2a494d;
-    color: #ffffff;
-    font-weight: 700;
-    border: none;
-    border-radius: 5px;
-    overflow: 5px;
-    cursor: pointer;
-    transition: .3s;
-}
-#upload:hover{
-    filter: brightness(.8)
-}
-.areaIcon{
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
-}
-#spanUpload{
-    padding: 0 100px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: aquamarine;
-}
-#upload.cliked.areaIcon{
-    animation: 1s move infinite;
-}
-@keyframes move{
-    0%{transform: translateY(0px)}
-    50%{transform: translateY(-30px)}
-    100%{transform: translateY(0px)}
 }

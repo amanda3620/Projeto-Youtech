@@ -21,12 +21,7 @@ def verifica_sessao():
 
 # Verificar o database, ou seja os dados conectados ao arquivo sql
 def conecta_database():
-    # Obtém o caminho absoluto para a pasta "projetos"
-    caminho_projetos = os.path.abspath("Projeto-Youtech")
-    # Combina o caminho com o nome do banco de dados
-    caminho_banco = os.path.join(caminho_projetos, "db_tech.db")
-    # Conecta-se ao banco de dados usando o caminho ajustado
-    conexao = sql.connect(caminho_banco)
+    conexao = sql.connect("db_tech.db")
     conexao.row_factory = sql.Row
     return conexao
 
@@ -110,13 +105,13 @@ def cadastro():
         requisitos_vaga=request.form['requisitos_vaga']
         email_vaga=request.form['email_vaga']
         salario_vaga=request.form['salario_vaga']
-        desc_vaga=request.form['desc_vaga']
+        desc_vaga = request.form['desc_vaga']
         img_vaga=request.files['img_vaga']
         id_foto=str(uuid.uuid4().hex)
         filename=id_foto+cargo_vaga +'.png'
         img_vaga.save("static/img/imagens/"+filename)
         conexao = conecta_database()
-        conexao.execute('INSERT INTO vagas (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, img_vaga, desc_vaga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, filename))
+        conexao.execute('INSERT INTO vagas (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, img_vaga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, filename))
         conexao.commit()
         conexao.close()
         return redirect("/adm")
@@ -157,6 +152,7 @@ def editvaga():
     cargo_vaga = request.form['cargo_vaga']
     tipo_vaga = request.form['tipo_vaga']
     requisitos_vaga = request.form['requisitos_vaga']
+    desc_vaga = request.form['desc_vaga']
     local_vaga = request.form['local_vaga']
     email_vaga = request.form['email_vaga']
     salario_vaga = request.form['salario_vaga']
@@ -165,10 +161,10 @@ def editvaga():
     if img_vaga:
         vaga = conexao.execute('SELECT * FROM vagas WHERE id_vaga = ?', (id_vaga)).fetchall()
         filename = vaga[0]['img_vaga']
-        img_vaga.save("static/img/" + filename)
-        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ?, img_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga,requisitos_vaga, local_vaga, email_vaga, salario_vaga, filename, id_vaga))
+        img_vaga.save("static/img/imagens" + filename)
+        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, desc_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ?, img_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga,requisitos_vaga, desc_vaga, local_vaga, email_vaga, salario_vaga, filename, id_vaga))
     else:
-        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga, requisitos_vaga, local_vaga, email_vaga, salario_vaga, id_vaga))
+        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, desc_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga, requisitos_vaga, desc_vaga, local_vaga, email_vaga, salario_vaga, id_vaga))
     conexao.commit()
     conexao.close()
     return redirect('/adm')

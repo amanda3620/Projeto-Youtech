@@ -6,7 +6,5 @@ CREATE TABLE IF NOT EXISTS vagas (
     salario_vaga REAL NOT NULL,
     local_vaga TEXT NOT NULL,
     email_vaga TEXT NOT NULL,
-    img_vaga TEXT NOT NULL,
-    curriculo_vaga TEXT NOT NULL,
-    desc_vaga TEXT NOT NULL
+    img_vaga TEXT NOT NULL
 );
