@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request,redirect, session
 import sqlite3 as sql
 import uuid
+import os
 
 app = Flask(__name__)
 app.secret_key = "youtech"
@@ -20,7 +21,12 @@ def verifica_sessao():
 
 # Verificar o database, ou seja os dados conectados ao arquivo sql
 def conecta_database():
-    conexao = sql.connect("db_tech.db")
+    # Obtém o caminho absoluto para a pasta "projetos"
+    caminho_projetos = os.path.abspath("Projeto-Youtech")
+    # Combina o caminho com o nome do banco de dados
+    caminho_banco = os.path.join(caminho_projetos, "db_tech.db")
+    # Conecta-se ao banco de dados usando o caminho ajustado
+    conexao = sql.connect(caminho_banco)
     conexao.row_factory = sql.Row
     return conexao
 
@@ -107,8 +113,8 @@ def cadastro():
         desc_vaga=request.form['desc_vaga']
         img_vaga=request.files['img_vaga']
         id_foto=str(uuid.uuid4().hex)
-        filename=id_foto+cargo_vaga+'.jpg'
-        img_vaga.save("static/img/" + filename)
+        filename=id_foto+cargo_vaga +'.png'
+        img_vaga.save("static/img/imagens/"+filename)
         conexao = conecta_database()
         conexao.execute('INSERT INTO vagas (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, img_vaga, desc_vaga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, filename))
         conexao.commit()
@@ -116,6 +122,7 @@ def cadastro():
         return redirect("/adm")
     else:
         return redirect("/login")
+
 
 # Excluir produtos 
 @app.route("/excluir/<id>")
