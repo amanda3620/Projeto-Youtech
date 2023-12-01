@@ -54,7 +54,7 @@ body{
     border-radius: 5px;
     background-color: transparent;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-
+    width: 100%;
 }
 #enviarSobre:hover{
     background-color: #2a494d;
@@ -128,7 +128,7 @@ body{
     margin-top: 10% ;
     width: 65%;
     border-radius: 1%;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0/9, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     background-color: rgb(196, 255, 231);
 }
 #novoCad h1{

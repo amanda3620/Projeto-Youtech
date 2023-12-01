@@ -107,11 +107,11 @@ def cadastro():
         salario_vaga=request.form['salario_vaga']
         desc_vaga = request.form['desc_vaga']
         img_vaga=request.files['img_vaga']
-        id_foto=str(uuid.uuid4().hex)
-        filename=id_foto+cargo_vaga +'.png'
+        id_vaga=str(uuid.uuid4().hex)
+        filename=id_vaga+cargo_vaga +'.png'
         img_vaga.save("static/img/imagens/"+filename)
         conexao = conecta_database()
-        conexao.execute('INSERT INTO vagas (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, img_vaga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (cargo_vaga, tipo_vaga, local_vaga, requisitos_vaga, email_vaga, salario_vaga, desc_vaga, filename))
+        conexao.execute('INSERT INTO vagas (tipo_vaga, cargo_vaga, requisitos_vaga, salario_vaga, local_vaga,email_vaga, desc_vaga, img_vaga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (tipo_vaga, cargo_vaga, requisitos_vaga, salario_vaga, local_vaga,email_vaga, desc_vaga, filename))
         conexao.commit()
         conexao.close()
         return redirect("/adm")
@@ -162,9 +162,9 @@ def editvaga():
         vaga = conexao.execute('SELECT * FROM vagas WHERE id_vaga = ?', (id_vaga)).fetchall()
         filename = vaga[0]['img_vaga']
         img_vaga.save("static/img/imagens" + filename)
-        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, desc_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ?, img_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga,requisitos_vaga, desc_vaga, local_vaga, email_vaga, salario_vaga, filename, id_vaga))
+        conexao.execute('UPDATE vagas SET tipo_vaga = ?, cargo_vaga = ?, requisitos_vaga = ?, salario_vaga = ?, local_vaga = ?, email_vaga = ?, desc_vaga = ?, img_vaga = ? WHERE id_vaga = ?', (tipo_vaga, cargo_vaga,requisitos_vaga, salario_vaga, local_vaga, email_vaga, desc_vaga, filename, id_vaga))
     else:
-        conexao.execute('UPDATE vagas SET cargo_vaga = ?, tipo_vaga = ?, requisitos_vaga = ?, desc_vaga = ?, local_vaga = ?, email_vaga = ?, salario_vaga = ? WHERE id_vaga = ?', (cargo_vaga, tipo_vaga, requisitos_vaga, desc_vaga, local_vaga, email_vaga, salario_vaga, id_vaga))
+        conexao.execute('UPDATE vagas SET tipo_vaga = ?, cargo_vaga = ?, requisitos_vaga = ?, salario_vaga = ?, local_vaga = ?, email_vaga = ?, desc_vaga = ? WHERE id_vaga = ?', (tipo_vaga, cargo_vaga, requisitos_vaga, salario_vaga, local_vaga, email_vaga, desc_vaga, id_vaga))
     conexao.commit()
     conexao.close()
     return redirect('/adm')
@@ -178,8 +178,28 @@ def sobre():
     # Se vaga_id estiver presente, exibe os detalhes específicos da vaga
     vaga = conexao.execute('SELECT * FROM vagas WHERE id_vaga = ?', (vaga_id,)).fetchone()
     conexao.close()
-    title = vaga['cargo_vaga']  # Ou algum outro campo relevante para o título
-    return render_template("sobre.html", vaga=vaga, title=title)
+    # Verifica se a consulta encontrou uma vaga antes de acessar seus atributos
+    if vaga is not None:
+        title = vaga['cargo_vaga']  # Ou algum outro campo relevante para o título
+        return render_template("sobre.html", vaga=vaga, title=title)
+    else:
+        # Trate o caso em que não foi encontrada nenhuma vaga com o id_vaga fornecido
+        return render_template("home.html")
+
+
+
+@app.route("/sobrevaga", methods=['POST'])
+def sobrevaga():
+    if verifica_sessao():
+        curriculo_vaga = request.files['curriculo_vaga']
+        id_vaga = str(uuid.uuid4().hex)
+        filename = id_vaga + '.pdf'
+        curriculo_vaga.save("static/img/curriculo/" + filename)
+        return redirect("/")
+    else:
+        return redirect("/sobre")
+
+
 
 # Rota da página para quando não há páginas
 @app.route("/construcao")
